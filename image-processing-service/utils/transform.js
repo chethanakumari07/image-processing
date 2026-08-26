@@ -58,7 +58,7 @@ async function applyOne(buffer, t) {
         .toBuffer();
     }
 
-    // ---- FLIP: mirror vertically (upside down) ----
+    // ---- FLIP: mirror vertically (upside down) ----  
     case 'flip': {
       return sharp(buffer).flip().toBuffer();
     }
@@ -110,6 +110,32 @@ async function applyOne(buffer, t) {
           .tint({ r: 112, g: 66, b: 20 })
           .toBuffer();
       }
+      if (t.name === 'invert') {
+        // Sharp has no built-in "invert" preset.        
+        return sharp(buffer)
+          .negate()
+          .toBuffer();
+      }
+      if (t.name === 'warm') {
+        // Sharp has no built-in "warm" preset.        
+        return sharp(buffer)
+          .modulate({
+            brightness:1.05,
+            saturation:1.2
+          })
+          .tint({ r: 225, g: 180, b: 120 })
+          .toBuffer();
+        }
+        if (t.name === 'cool') {
+        // Sharp has no built-in "cool" preset.        
+        return sharp(buffer)
+          .modulate({
+            brightness:1.02,
+            saturation:1.1
+          })
+          .tint({ r: 100, g: 160, b: 225 })
+          .toBuffer();
+        }
       throw new AppError(`Unknown filter name: ${t.name}`, 400);
     }
 
