@@ -1,5 +1,3 @@
-
-
 // STATE 
 // We keep the JWT in localStorage so a page refresh doesn't log the user out. 
 let token = localStorage.getItem('token');
