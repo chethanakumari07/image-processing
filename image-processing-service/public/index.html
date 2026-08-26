@@ -4,18 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image Processing Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <h1>🖼️ Image Processing Service</h1>
+    <div class="brand">
+      <h1>Image processing </h1>
+      <p class="tagline">Upload · Process · Retrieve</p>
+    </div>
     <!-- This button only shows once logged in — app.js toggles its visibility -->
     <button id="logoutBtn" class="hidden">Log out</button>
   </header>
 
-  <!-- AUTH SCREEN  -->
-  
+  <!-- ================= AUTH SCREEN ================= -->
+  <!-- Shown when there's no valid JWT. Two forms, toggled with tabs. -->
   <section id="authSection">
     <div class="tabs">
       <button id="showLoginTab" class="tab active">Log In</button>
@@ -41,11 +50,12 @@
   </section>
 
   <!--  MAIN APP SCREEN  -->
+  <!-- Hidden until logged in. Holds the upload box and image gallery. -->
   <section id="appSection" class="hidden">
 
     <div class="upload-box">
-      <label for = "fileInput">Select an image</label>
-      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/gif"/>
+      <label for="fileInput" class = "Visually-hidden">Select an file </label>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/gif" />
       <button id="uploadBtn">Upload Image</button>
       <p class="error" id="uploadError"></p>
     </div>
@@ -56,8 +66,9 @@
 
   </section>
 
-  <!--  TRANSFORM MODAL  -->
-
+  <!-- ================= TRANSFORM MODAL ================= -->
+  <!-- One shared modal, reused for whichever image the user clicks "Transform" on.
+       app.js remembers which image ID it's currently open for. -->
   <div id="transformModal" class="modal hidden">
     <div class="modal-content">
       <button id="closeModalBtn" class="close-btn">&times;</button>
@@ -102,9 +113,9 @@
           <select id="filterName">
             <option value="grayscale">Grayscale</option>
             <option value="sepia">Sepia</option>
-            <option value="invert">Invert</option>
-            <option value="warm">Warm</option>
-            <option value="cool">cool</option>
+             <option value="invert">Invert</option>
+              <option value="Warm">Warm</option>
+               <option value="Cool">Cool</option>
           </select>
         </label>
 
@@ -129,6 +140,8 @@
 
       <button id="applyTransformBtn">Apply Transformations</button>
       <p class="error" id="transformError"></p>
+
+      <!-- Result preview appears here after a successful transform -->
       <div id="transformResult"></div>
     </div>
   </div>
