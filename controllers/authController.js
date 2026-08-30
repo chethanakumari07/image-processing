@@ -44,8 +44,7 @@ const register = catchAsync(async (req, res) => {
 
   const token = signToken(user);
 
-  // 201 = "Created" — the correct status code for a successful
-  // resource-creation request like sign-up.
+  // the correct status code for a successful resource-creation request like sign-up.
   res.status(201).json({ status: 'success', user, token });
 });
 
